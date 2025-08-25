@@ -1,66 +1,60 @@
-Descripción General
-Este proyecto Java implementa una Cola de Prioridad utilizando una estructura de datos min-heap. La cola de prioridad permite la inserción y extracción eficiente de elementos basados en su prioridad, donde los valores de prioridad numéricamente más bajos indican mayor prioridad.
 
-Estructura del Proyecto
+---
 
-ArchivosTema5/
-├── Main.java          # Clase de demostración con ejemplos de uso
-├── PriorityNode.java  # Clase nodo que almacena pares prioridad-dato
-└── PriorityQueue.java # Implementación principal de la cola de prioridad
-Características Principales
-Implementación Genérica: Funciona con cualquier tipo de dato mediante genéricos de Java
+## Características Principales
+- **Implementación Genérica**: Funciona con cualquier tipo de dato mediante genéricos de Java.  
+- **Redimensionamiento Dinámico**: Expande automáticamente la capacidad cuando es necesario.  
+- **Estructura Min-Heap**: Garantiza O(log n) para operaciones `push`/`pop`.  
+- **Indexado Base 1**: Utiliza indexado desde 1 para simplificar operaciones de heap.  
+- **API Completa**: Métodos `push`, `pop`, `isEmpty`, `size`, `show`.  
 
-Redimensionamiento Dinámico: Expande automáticamente la capacidad cuando es necesario
+---
 
-Estructura Min-Heap: Garantiza complejidad temporal O(log n) para operaciones push/pop
+## 🏗Clases
 
-Indexado Base 1: Utiliza indexado de array comenzando en 1 para operaciones de heap
+### `PriorityNode`
+Almacena pares prioridad-dato.
 
-API Completa: Incluye métodos push, pop, isEmpty, size y show
+**Métodos principales:**
+- `getPriority()` / `setPriority()` → Acceso y modificación de la prioridad  
+- `getData()` / `setData()` → Acceso y modificación de los datos  
+- `toString()` → Representación en string del nodo  
 
-Clases
-PriorityNode<T>
-Almacena pares prioridad-dato con los siguientes métodos:
+### `PriorityQueue`
+Implementa la cola de prioridad con los siguientes métodos:
 
-getPriority() / setPriority() - Acceder y modificar la prioridad
+**Operaciones principales:**
+- `push(int priority, T value)` → Inserta un elemento con prioridad  
+- `pop()` → Remueve y retorna el elemento de mayor prioridad  
+- `isEmpty()` → Verifica si la cola está vacía  
+- `size()` → Retorna el número de elementos  
 
-getData() / setData() - Acceder y modificar los datos
+**Métodos de utilidad:**
+- `show()` → Muestra todos los elementos con sus posiciones y prioridades  
+- `resizeIfNeeded()` → Expande dinámicamente el array  
+- `heapify(int i)` → Mantiene la propiedad de min-heap  
 
-toString() - Representación en string del nodo
+---
 
-PriorityQueue<T>
-Implementa la cola de prioridad con estos métodos:
+## ⏱️ Análisis de Complejidad
 
-Operaciones Principales
-push(int priority, T value) - Insertar elemento con prioridad especificada
+| Operación   | Complejidad Temporal | Complejidad Espacial |
+|-------------|----------------------|-----------------------|
+| `push()`    | O(log n)             | O(1) amortizado       |
+| `pop()`     | O(log n)             | O(1)                  |
+| `isEmpty()` | O(1)                 | O(1)                  |
+| `size()`    | O(1)                 | O(1)                  |
 
-pop() - Remover y retornar el elemento de mayor prioridad (valor numérico más bajo)
+---
 
-isEmpty() - Verificar si la cola está vacía
-
-size() - Obtener el número actual de elementos
-
-Métodos de Utilidad
-show() - Mostrar todos los elementos con sus posiciones y prioridades
-
-resizeIfNeeded() - Método interno para expansión dinámica del array
-
-heapify(int i) - Método interno para mantener la propiedad de heap
-
-Análisis de Complejidad
-Operación	Complejidad Temporal	Complejidad Espacial
-push()	O(log n)	O(1) amortizado
-pop()	O(log n)	O(1)
-isEmpty()	O(1)	O(1)
-size()	O(1)	O(1)
-Ejemplo de Uso
-java
+## Ejemplo de Uso
+```java
 PriorityQueue<String> queue = new PriorityQueue<>();
 
 // Insertar elementos con diferentes prioridades
 queue.push(3, "Tarea media");
-queue.push(1, "Tarea urgente");      // Mayor prioridad (número más bajo)
-queue.push(5, "Tarea baja prioridad"); // Menor prioridad
+queue.push(1, "Tarea urgente");      // Mayor prioridad
+queue.push(5, "Tarea baja prioridad");
 queue.push(2, "Tarea importante");
 
 // Mostrar contenido de la cola
@@ -70,7 +64,9 @@ queue.show();
 while (!queue.isEmpty()) {
     System.out.println("Pop: " + queue.pop());
 }
-Ejemplo de Salida
+
+```
+#Ejemplo de Salida
 
 Insertando elementos en la cola de prioridad...
 Elementos en la cola de prioridad (tamaño: 4):
@@ -85,40 +81,4 @@ Pop: Tarea importante
 Pop: Tarea media
 Pop: Tarea baja prioridad
 
-Estado final de la cola:
-La cola está vacía
-Detalles de Implementación
-Propiedad de Heap: Mantiene un min-heap donde los nodos padres tienen valores más bajos (mayor prioridad) que los hijos
-
-Almacenamiento en Array: Utiliza indexado base 1 para cálculos más simples de padre/hijo
-
-Redimensionamiento Automático: Duplica la capacidad cuando el array está lleno
-
-Eficiencia de Memoria: Establece elementos removidos como null para ayudar al garbage collector
-
-Requisitos
-Java 8 o superior
-
-Sin dependencias externas
-
-Comenzar
-Compilar todos los archivos Java:
-
-bash
-javac ArchivosTema5/*.java
-Ejecutar la clase principal:
-
-bash
-java ArchivosTema5.Main
-Casos de Uso
-Sistemas de planificación de tareas
-
-Priorización de paquetes de red
-
-Simulación de eventos
-
-Implementación del algoritmo de Dijkstra
-
-Cualquier escenario que requiera procesamiento prioritario
-
-Esta implementación proporciona una base robusta para el procesamiento de datos basado en prioridades con características de rendimiento eficientes adecuadas para la mayoría de las aplicaciones.
+Estado final de la cola: La cola está vacía
